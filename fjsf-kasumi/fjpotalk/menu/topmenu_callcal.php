@@ -15,6 +15,7 @@ global $MOJI_NEW;
 
 global $user;
 global $fromY, $fromM, $fromD, $toY, $toM, $toD;
+global $fromY2, $fromM2, $fromD2; //グラフ用
 
 
 	//抽出対象日付を作成
@@ -22,6 +23,8 @@ global $fromY, $fromM, $fromD, $toY, $toM, $toD;
 	$wFrom += 0;
 	$wTo = $toY . $toM . $toD;
 	$wTo += 0;
+	$wFrom2 = $fromY2 . $fromM2 . $fromD2;
+	$wFrom2 += 0;
 
 	$recflg = 0;//対象ﾚｺｰﾄﾞ有り無しﾌﾗｸﾞ
 
@@ -289,7 +292,8 @@ global $fromY, $fromM, $fromD, $toY, $toM, $toD;
 	// 2.wdeskhistory2dayの作成
 	//////////////////////////////////
 
-	$targetdate = $wFrom; //開始日
+//	$targetdate = $wFrom; //開始日
+	$targetdate = $wFrom2; //開始日(31日前)
 	$endymd = $wTo; //終了日
 
 	//曜日を配列に入れる
@@ -355,7 +359,8 @@ global $fromY, $fromM, $fromD, $toY, $toM, $toD;
 	//通話数
 	$sql = "SELECT  " . $Const_DB_SCHEMA . "dcall_datadump.calldate, Count( " . $Const_DB_SCHEMA . "dcall_datadump.recno) AS recno_cnt, Sum( " . $Const_DB_SCHEMA . "dcall_datadump.talktime) AS talktime_sum";
 	$sql = $sql. " FROM  " . $Const_DB_SCHEMA . "dcall_datadump LEFT JOIN  " . $Const_DB_SCHEMA . "mtrunk ON  " . $Const_DB_SCHEMA . "dcall_datadump.trunkno =  " . $Const_DB_SCHEMA . "mtrunk.trunkno";
-	$sql = $sql . " WHERE (calldate>=" . $wFrom . " AND calldate<=" . $endymd . ")";
+	$sql = $sql . " WHERE (calldate>=" . $wFrom2 . " AND calldate<=" . $endymd . ")";
+//	$sql = $sql . " WHERE (calldate>=" . $wFrom . " AND calldate<=" . $endymd . ")";
 	if($wSelclientcode == "ALL"){
 		$sql = $sql . " AND   ( " . $Const_DB_SCHEMA . "mtrunk.deskcode=" . $selDesk . ")";
 	}else{
@@ -388,7 +393,8 @@ global $fromY, $fromM, $fromD, $toY, $toM, $toD;
 	//ガイダンス数
 	$sql = "SELECT  " . $Const_DB_SCHEMA . "dcall_datadump.calldate, Count( " . $Const_DB_SCHEMA . "dcall_datadump.recno) AS recno_cnt";
 	$sql = $sql . " FROM (( " . $Const_DB_SCHEMA . "dcall_datadump LEFT JOIN  " . $Const_DB_SCHEMA . "mtrunk ON  " . $Const_DB_SCHEMA . "dcall_datadump.trunkno =  " . $Const_DB_SCHEMA . "mtrunk.trunkno) LEFT JOIN  " . $Const_DB_SCHEMA . "mclient ON " . $Const_DB_SCHEMA . "mtrunk.clientcode =  " . $Const_DB_SCHEMA . "mclient.clientcode) LEFT JOIN  " . $Const_DB_SCHEMA . "menduser ON ( " . $Const_DB_SCHEMA . "mtrunk.clientcode =  " . $Const_DB_SCHEMA . "menduser.clientcode) AND ( " . $Const_DB_SCHEMA . "mtrunk.endusercode =  " . $Const_DB_SCHEMA . "menduser.endusercode)";
-	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
+//	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
+	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom2 . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
 	if($wSelclientcode == "ALL"){
 		$sql = $sql . " AND   ( " . $Const_DB_SCHEMA . "mtrunk.deskcode=" . $selDesk . ")";
 	}else{
@@ -416,7 +422,8 @@ global $fromY, $fromM, $fromD, $toY, $toM, $toD;
 	//ガイダンス12秒数
 	$sql = "SELECT  " . $Const_DB_SCHEMA . "dcall_datadump.calldate, Count( " . $Const_DB_SCHEMA . "dcall_datadump.recno) AS recno_cnt";
 	$sql = $sql . " FROM (( " . $Const_DB_SCHEMA . "dcall_datadump LEFT JOIN  " . $Const_DB_SCHEMA . "mtrunk ON  " . $Const_DB_SCHEMA . "dcall_datadump.trunkno =  " . $Const_DB_SCHEMA . "mtrunk.trunkno) LEFT JOIN  " . $Const_DB_SCHEMA . "mclient ON  " . $Const_DB_SCHEMA . "mtrunk.clientcode =  " . $Const_DB_SCHEMA . "mclient.clientcode) LEFT JOIN  " . $Const_DB_SCHEMA . "menduser ON ( " . $Const_DB_SCHEMA . "mtrunk.clientcode =  " . $Const_DB_SCHEMA . "menduser.clientcode) AND ( " . $Const_DB_SCHEMA . "mtrunk.endusercode =  " . $Const_DB_SCHEMA . "menduser.endusercode)";
-	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
+//	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
+	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom2 . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
 	if($wSelclientcode == "ALL"){
 		$sql = $sql . " AND   ( " . $Const_DB_SCHEMA . "mtrunk.deskcode=" . $selDesk . ")";
 	}else{
@@ -445,7 +452,8 @@ global $fromY, $fromM, $fromD, $toY, $toM, $toD;
 	//不出呼数
 	$sql = "SELECT  " . $Const_DB_SCHEMA . "dcall_datadump.calldate, Count( " . $Const_DB_SCHEMA . "dcall_datadump.recno) AS recno_cnt";
 	$sql = $sql . " FROM (( " . $Const_DB_SCHEMA . "dcall_datadump LEFT JOIN  " . $Const_DB_SCHEMA . "mtrunk ON  " . $Const_DB_SCHEMA . "dcall_datadump.trunkno =  " . $Const_DB_SCHEMA . "mtrunk.trunkno) LEFT JOIN  " . $Const_DB_SCHEMA . "mclient ON  " . $Const_DB_SCHEMA . "mtrunk.clientcode =  " . $Const_DB_SCHEMA . "mclient.clientcode) LEFT JOIN  " . $Const_DB_SCHEMA . "menduser ON ( " . $Const_DB_SCHEMA . "mtrunk.clientcode =  " . $Const_DB_SCHEMA . "menduser.clientcode) AND ( " . $Const_DB_SCHEMA . "mtrunk.endusercode =  " . $Const_DB_SCHEMA . "menduser.endusercode)";
-	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
+//	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
+	$sql = $sql . " WHERE ( " . $Const_DB_SCHEMA . "dcall_datadump.calldate>=" . $wFrom2 . " And  " . $Const_DB_SCHEMA . "dcall_datadump.calldate<=" . $wTo . ")";
 	if($wSelclientcode == "ALL"){
 		$sql = $sql . " AND   ( " . $Const_DB_SCHEMA . "mtrunk.deskcode=" . $selDesk . ")";
 	}else{

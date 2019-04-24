@@ -46,7 +46,7 @@
 	$result = $conn->prepare($sql);
 	$result->execute();
 	if ($rs = $result->fetch(PDO::FETCH_ASSOC)){
-		$createddate = date("Y-m-d H:i:s",strtotime($rs["createddate"] . "+9 hour")); //ここで9時間足す
+		$receiotdatetime__c = date("Y-m-d H:i:s",strtotime($rs["receiotdatetime__c"] . "+9 hour")); //ここで9時間足す
 		$closeddate = date("Y-m-d H:i:s",strtotime($rs["closeddate"] . "+9 hour")); //ここで9時間足す
 		if($ENV_MODE == 1){
 			$storename = mb_convert_encoding( $rs['shopname__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
@@ -126,7 +126,7 @@
 					</tr>
 					<tr>
 						<td width="100" align="center" bgcolor=<?print $FIELD_BGCOLOR;?>><font color=<? print $FIELD_FTCOLOR ?>>受付日時</font></td>
-						<td width="400"><?=$createddate?></td>
+						<td width="400"><?=$receiotdatetime__c?></td>
 					</tr>
 					<tr>
 						<td width="100" align="center" bgcolor=<?print $FIELD_BGCOLOR;?>><font color=<? print $FIELD_FTCOLOR ?>>店舗名</font></td>

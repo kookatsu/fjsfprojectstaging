@@ -1,7 +1,7 @@
 ﻿<?php
 //引数のselmode -> データの抽出条件が変わる
 //1:インシデント-総件数
-//11～19:インシデント内容ごとのNO
+//11～20:インシデント内容ごとのNO
 
 //51:過去未完了件数全ての総件数
 
@@ -132,18 +132,18 @@ global $wTo9;
 		$sql = $sql . " WHERE ((" . $Const_DB_SCHEMA . "case.closeddate) Is Null)";
 		$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 		if( $selmode == 52){ //期間指定
-			$sql = $sql . " AND (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-			$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+			$sql = $sql . " AND (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+			$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 		}
 		$sql = $sql . " GROUP BY " . $Const_DB_SCHEMA . "case.shopname__c" . "," . $Const_DB_SCHEMA . "case.inquirycategory2__c";
 		$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA . "case.shopname__c" . "," . $Const_DB_SCHEMA . "case.inquirycategory2__c";
 	}else{
 		//総件数・インシデント別
 		$sql = "SELECT " . $Const_DB_SCHEMA . "case.shopname__c" . "," . $Const_DB_SCHEMA . "case.inquirycategory2__c FROM " . $Const_DB_SCHEMA . "case";
-		$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-		$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+		$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+		$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 		$sql = $sql . " AND   (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
-		if( $selmode>=11 && $selmode <=19 ){//インシデント別
+		if( $selmode>=11 && $selmode <=20 ){//インシデント別
 			$selname = SfCloseresonNoToName( $selmode ); //fjcall_comfunc.php
 			$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.closereson__c='" . $selname . "')";//MYCONST
 		}
@@ -348,8 +348,8 @@ global $this_pg;
 				//インシデント->総件数
 				if($selmode==1){
 					$sql = "SELECT * From " . $Const_DB_SCHEMA . "case";
-					$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-					$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+					$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+					$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 					$sql = $sql . " AND   (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 					//店舗選択あり
 					if($_POST["combostorecode"] !="ALL"){
@@ -360,7 +360,7 @@ global $this_pg;
 						$sql = $sql . " AND   (" . $Const_DB_SCHEMA . "case.inquirycategory2__c='" . $_POST["combohardcode"] . "')";
 					}
 					if( $sortflg == 1 ){
-						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.createddate"; //日時
+						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.receiotdatetime__c"; //日時
 					}elseif( $sortflg == 2 ){
 						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.shopname__c"; //店舗名
 					}elseif( $sortflg == 3 ){
@@ -381,12 +381,12 @@ global $this_pg;
 					}
 				}
 				//インシデント別
-				if( $selmode>=11 && $selmode <=19 ){
+				if( $selmode>=11 && $selmode <=20 ){
 					$selname = SfCloseresonNoToName( $selmode ); //fjcall_comfunc.php
 
 					$sql = "SELECT * From " . $Const_DB_SCHEMA . "case";
-					$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-					$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+					$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+					$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 					$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 					$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.closereson__c='" . $selname . "')";//MYCONST
 					//店舗選択あり
@@ -399,7 +399,7 @@ global $this_pg;
 					}
 
 					if( $sortflg == 1 ){
-						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.createddate"; //日時
+						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.receiotdatetime__c"; //日時
 					}elseif( $sortflg == 2 ){
 						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.shopname__c"; //店舗名
 					}elseif( $sortflg == 3 ){
@@ -425,8 +425,8 @@ global $this_pg;
 					$sql = $sql . " WHERE ((" . $Const_DB_SCHEMA . "case.closeddate) Is Null)";
 					$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 					if( $selmode == 52){ //期間指定
-						$sql = $sql . " AND (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-						$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+						$sql = $sql . " AND (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+						$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 					}
 					//店舗選択あり
 					if($_POST["combostorecode"] !="ALL"){
@@ -438,7 +438,7 @@ global $this_pg;
 					}
 
 					if( $sortflg == 1 ){
-						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.createddate"; //日時
+						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.receiotdatetime__c"; //日時
 					}elseif( $sortflg == 2 ){
 						$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.shopname__c"; //店舗名
 					}elseif( $sortflg == 3 ){
@@ -469,9 +469,9 @@ global $this_pg;
 					$bkcolor_base = $GRID_MEISAI_COLOR1;
 
 
-					$createddate = date("Y-m-d H:i:s",strtotime($rs["createddate"] . "+9 hour")); //ここで9時間足す
-//					$createdateYMD = substr($createddate,0,10);
-//					$createdateHNS = substr($createddate,11);
+					$receiotdatetime__c = date("Y-m-d H:i:s",strtotime($rs["receiotdatetime__c"] . "+9 hour")); //ここで9時間足す
+//					$createdateYMD = substr($receiotdatetime__c,0,10);
+//					$createdateHNS = substr($receiotdatetime__c,11);
 
 					if($ENV_MODE == 1){
 						$storename = mb_convert_encoding( $rs['shopname__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
@@ -491,7 +491,7 @@ global $this_pg;
 ?>
 					<tr height="20" bgcolor="#FFFFFF" >
 						<td width="40"  align="center" bgcolor=<?=$bkcolor_base?>><?= $wRecCnt ?></td>
-						<td width="160"  align="center" bgcolor=<?=$bkcolor_base?>><?= $createddate ?></td>
+						<td width="160"  align="center" bgcolor=<?=$bkcolor_base?>><?= $receiotdatetime__c ?></td>
 						<td width="210" align="left"   bgcolor=<?=$bkcolor_base?>>&nbsp;<?= $storename ?></td>
 						<td width="70"  align="center" bgcolor=<?=$bkcolor_base?>><a href="javascript:void(0)" target=<?=$rs["casenumber"]?> onClick="MyListOpen(this.target);return false"><?=$rs["casenumber"]?></a></td>
 						<td width="70"  align="left"   bgcolor=<?=$bkcolor_base?>>&nbsp;<?= $naiyou ?></td>

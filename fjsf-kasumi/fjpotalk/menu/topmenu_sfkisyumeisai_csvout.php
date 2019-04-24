@@ -48,6 +48,7 @@
 	$csvHead = $csvHead .  "インシデントNo." . "\",\"";
 	$csvHead = $csvHead .  "内容" . "\",\"";
 	$csvHead = $csvHead .  "機種" . "\",\"";
+	$csvHead = $csvHead .  "機器番号" . "\",\"";
 	$csvHead = $csvHead .  "ステータス" . "\",\"";
 	$csvHead = $csvHead .  "完了理由";
 	$csvHead = $csvHead . "\"\n";
@@ -72,12 +73,12 @@
 	$selname = $selmode;
 
 	$sql = "SELECT * From " . $Const_DB_SCHEMA . "case";
-	$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-	$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+	$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+	$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 	$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 	$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.inquirycategory2__c='" . $selname . "')";//機種
 	if( $sortflg == 1 ){
-		$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.createddate"; //日時
+		$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.receiotdatetime__c"; //日時
 	}elseif( $sortflg == 2 ){
 		$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.shopname__c"; //店舗名
 	}elseif( $sortflg == 3 ){
@@ -88,12 +89,15 @@
 		$sql = $sql . " ORDER BY convert_to(" . $Const_DB_SCHEMA  . "case.status,'UTF-8')"; //ステータス
 	}elseif( $sortflg == 6 ){
 		$sql = $sql . " ORDER BY convert_to(" . $Const_DB_SCHEMA  . "case.closereson__c,'UTF-8')"; //完了理由
+	}elseif( $sortflg == 7 ){
+		$sql = $sql . " ORDER BY convert_to(" . $Const_DB_SCHEMA  . "case.machinenumber__c,'UTF-8')"; //機器番号
 	}else{
 		$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.casenumber"; //インシデントNO
 	}
 	if($ENV_MODE == 1){
 		$sql = mb_convert_encoding( $sql, $MOJI_ORG, $MOJI_NEW ); //ここは日本語が混じっているのでUTF-8へ
 	}
+
 	$result = $conn->prepare($sql);
 	$result->execute();
 	while ($rs = $result->fetch(PDO::FETCH_ASSOC))
@@ -101,20 +105,22 @@
 		$wRecCnt = $wRecCnt + 1;
 
 
-		$createddate = date("Y-m-d H:i:s",strtotime($rs["createddate"] . "+9 hour")); //ここで9時間足す
-		$createdateYMD = substr($createddate,0,10);
-		$createdateHNS = substr($createddate,11);
+		$receiotdatetime__c = date("Y-m-d H:i:s",strtotime($rs["receiotdatetime__c"] . "+9 hour")); //ここで9時間足す
+		$createdateYMD = substr($receiotdatetime__c,0,10);
+		$createdateHNS = substr($receiotdatetime__c,11);
 
 		if($ENV_MODE == 1){
 			$storename = mb_convert_encoding( $rs['shopname__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
 			$naiyou = mb_convert_encoding( $rs['inquirycategory3__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
 			$kisyu = mb_convert_encoding( $rs['inquirycategory2__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
+			$machine = mb_convert_encoding( $rs['machinenumber__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
 			$status =mb_convert_encoding( $rs['status'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
 			$taiou =mb_convert_encoding( $rs['closereson__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
 		}else{
 			$storename = $rs['shopname__c'];
 			$naiyou = $rs['inquirycategory3__c'];
 			$kisyu = $rs['inquirycategory2__c'];
+			$machine = $rs['machinenumber__c'];
 			$status =$rs['status'];
 			$taiou =$rs['closereson__c'];
 		}
@@ -127,6 +133,7 @@
                          . $rs["casenumber"] . "\",\"" 
                          . $naiyou . "\",\"" 
                          . $kisyu . "\",\"" 
+                         . $machine . "\",\"" 
                          . $status . "\",\"" 
                          . $taiou . "\"\n";
 		print $contents;

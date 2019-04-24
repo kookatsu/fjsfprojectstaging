@@ -72,8 +72,8 @@
 
 	if($selmode==1){
 		$sql = "SELECT * From " . $Const_DB_SCHEMA . "case";
-		$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-		$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+		$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+		$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 		$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 		$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.casenumber";
 		if($ENV_MODE == 1){
@@ -81,16 +81,16 @@
 		}
 	}
 	//インシデント別
-	if( $selmode>=11 && $selmode <=19 ){
+	if( $selmode>=11 && $selmode <=20 ){
 		$selname = SfCloseresonNoToName( $selmode );
 
 		$sql = "SELECT * From " . $Const_DB_SCHEMA . "case";
-		$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-		$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+		$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+		$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 		$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 		$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.closereson__c='" . $selname . "')";//MYCONST
 		if( $sortflg == 1 ){
-			$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.createddate"; //日時
+			$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.receiotdatetime__c"; //日時
 		}elseif( $sortflg == 2 ){
 			$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.shopname__c"; //店舗名
 		}elseif( $sortflg == 3 ){
@@ -117,11 +117,11 @@
 		$sql = $sql . " WHERE ((" . $Const_DB_SCHEMA . "case.closeddate) Is Null)";
 		$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 		if( $selmode == 52){ //期間指定
-			$sql = $sql . " AND (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-			$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+			$sql = $sql . " AND (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+			$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 		}
 		if( $sortflg == 1 ){
-			$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.createddate"; //日時
+			$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.receiotdatetime__c"; //日時
 		}elseif( $sortflg == 2 ){
 			$sql = $sql . " ORDER BY " . $Const_DB_SCHEMA  . "case.shopname__c"; //店舗名
 		}elseif( $sortflg == 3 ){
@@ -149,9 +149,9 @@
 		$wRecCnt = $wRecCnt + 1;
 
 
-		$createddate = date("Y-m-d H:i:s",strtotime($rs["createddate"] . "+9 hour")); //ここで9時間足す
-		$createdateYMD = substr($createddate,0,10);
-		$createdateHNS = substr($createddate,11);
+		$receiotdatetime__c = date("Y-m-d H:i:s",strtotime($rs["receiotdatetime__c"] . "+9 hour")); //ここで9時間足す
+		$createdateYMD = substr($receiotdatetime__c,0,10);
+		$createdateHNS = substr($receiotdatetime__c,11);
 
 		if($ENV_MODE == 1){
 			$storename = mb_convert_encoding( $rs['shopname__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;

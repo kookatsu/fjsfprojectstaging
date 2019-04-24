@@ -77,6 +77,8 @@ function SfCloseresonNameToNo( $wStr ){
 		$SfCloseresonNo = 18;
 	}elseif($wStr == "キャンセル"){
 		$SfCloseresonNo = 19;
+	}elseif($wStr == "手動完了"){
+		$SfCloseresonNo = 20;
 	}else{
 	}
 
@@ -114,6 +116,8 @@ function SfCloseresonNoToName( $wNo ){
 		$SfCloseresonName = "社内解決";
 	}elseif($wNo == 19){
 		$SfCloseresonName = "キャンセル";
+	}elseif($wNo == 20){
+		$SfCloseresonName = "手動完了";
 	}else{
 	}
 
@@ -184,7 +188,7 @@ global $MOJI_NEW;
 	$reportnamelastupdate = 0;
 
 
-	$sql = "SELECT talksu,guidance,basestorecnt,notstorecnt,reportname,reportnamelastupdate FROM " . $Const_DB_SCHEMA . "mcompany";
+	$sql = "SELECT talksu,guidance,basestorecnt,notstorecnt,reportname,reportnamelastupdate, reportfilename FROM " . $Const_DB_SCHEMA . "mcompany";
 	$sql = $sql . " WHERE companycode='" . $Const_COMPANYCODE . "'";
 	$result = $conn->prepare($sql);
 	$result->execute();
@@ -194,6 +198,7 @@ global $MOJI_NEW;
 		$basestorecnt = $rs['basestorecnt'];
 		$notstorecnt = $rs['notstorecnt'];
 		$reportnamelastupdate = $rs['reportnamelastupdate'];
+		$reportfilename = $rs['reportfilename'];
 		if( $ENV_MODE == 1){
 			$reportname = mb_convert_encoding( $rs['reportname'], $MOJI_NEW, $MOJI_ORG); //文字コード変換
 		}else{
@@ -202,7 +207,7 @@ global $MOJI_NEW;
 	}
 	$result = null;
 
-	return array( $talksu, $guidance, $basestorecnt,$notstorecnt,$reportname, $reportnamelastupdate );
+	return array( $talksu, $guidance, $basestorecnt,$notstorecnt,$reportname, $reportnamelastupdate, $reportfilename );
 
 }
 //////////////////////////////////////////

@@ -105,8 +105,8 @@
 				$wTo9 = date("Y-m-d H:i:s",strtotime($wTo9 . "-9 hour"));
 
 				$sql = "SELECT " . $Const_DB_SCHEMA . "case.shopname__c, Count(" . $Const_DB_SCHEMA . "case.casenumber) AS casenumber_cnt FROM " . $Const_DB_SCHEMA . "case";
-				$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.createddate>='" . $wFromDate9 . "'";
-				$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.createddate<='" . $wTo9 . "')";
+				$sql = $sql . " WHERE (" . $Const_DB_SCHEMA . "case.receiotdatetime__c>='" . $wFromDate9 . "'";
+				$sql = $sql . " AND    " . $Const_DB_SCHEMA . "case.receiotdatetime__c<='" . $wTo9 . "')";
 				$sql = $sql . "   AND (" . $Const_DB_SCHEMA . "case.hq_name__c='" . $Const_HQ_NAME . "')";//MYCONST
 				$sql = $sql . " GROUP BY " . $Const_DB_SCHEMA . "case.shopname__c";
 				$sql = $sql . " ORDER BY Count(" . $Const_DB_SCHEMA . "case.casenumber) DESC";

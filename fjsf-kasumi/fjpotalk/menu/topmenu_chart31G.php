@@ -79,7 +79,6 @@ var data = google.visualization.arrayToDataTable([
  legend:'none'
 };
 
-
 var chart = new google.visualization.ColumnChart(document.getElementById('graph1'));
 chart.draw(data, options);
 }
