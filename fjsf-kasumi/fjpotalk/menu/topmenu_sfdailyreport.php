@@ -155,7 +155,11 @@
 
 
 					$receiotdatetime__c = date("Y-m-d H:i:s",strtotime($rs["receiotdatetime__c"] . "+9 hour")); //ここで9時間足す
-					$closeddate = date("Y-m-d H:i:s",strtotime($rs["closeddate"] . "+9 hour")); //ここで9時間足す
+					if($rs["closeddate"]>0){
+						$closeddate = date("Y-m-d H:i:s",strtotime($rs["closeddate"] . "+9 hour")); //ここで9時間足す
+					}else{
+						$closeddate = "";
+					}
 
 					if($ENV_MODE == 1){
 						$storename = mb_convert_encoding( $rs['shopname__c'], $MOJI_NEW,$MOJI_ORG); //文字コード変換;
