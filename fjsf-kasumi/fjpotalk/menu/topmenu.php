@@ -1,4 +1,9 @@
 ﻿<?php
+//2019-05-09 10分に１回OKボタンを自動でクリック
+//2019-05-09 起動時の日付範囲を今日～今日へ変更
+//2019-05-13 起動時の日付範囲　9時間足す
+
+
 	//新着マーク日数
 	$NEW_LIMIT =7;
 
@@ -137,7 +142,8 @@
 		$_POST["push_ok"] = "1";
 
 		//終了日(今日)
-		$seldate2 = date("Y/m/d", strtotime("-0 days")); //今日
+		$seldate2 = date("Y/m/d", strtotime("+9 hour")); //2019-05-13 システム日付が9時間時差がある
+//		$seldate2 = date("Y/m/d", strtotime("-0 days")); //今日
 		$_POST["colname2"] = $seldate2;
 		$selymd2 = str_replace("/", "", $seldate2);//ｽﾗｯｼｭを外す
 		$toY = substr( $selymd2,0, 4 );
@@ -149,7 +155,12 @@
 		$in_month = substr( $selymd2, 4, 2 );
 		$in_day = substr( $selymd2, 6, 2 );
 
-		list( $fromY, $fromM, $fromD ) = CalcDateStartDay($in_year, $in_month,$in_day , 0 );
+//2019-05-09 MOD
+//		list( $fromY, $fromM, $fromD ) = CalcDateStartDay($in_year, $in_month,$in_day , 0 );
+		$fromY = $toY;
+		$fromM = $toM;
+		$fromD = $toD;
+
 		$seldate1 = $fromY. "/" . $fromM. "/" . $fromD;
 		$_POST["colname1"] = $seldate1;
 		$selymd1 = $fromY. $fromM. $fromD;
@@ -190,6 +201,15 @@
 <link rel="shortcut icon" href="../img/sb.ico"  />
 <link rel="stylesheet" type="text/css" href="../common/fjcall_common.css">
 <title>FJコール受付集計 <? print $modname?></title>
+
+<script type="text/javascript" language="javascript">
+<!--
+	//600秒(10分)に1回ﾘﾌﾚｯｼｭ
+	setTimeout("MyComOK()",600000);
+
+// -->
+</script>
+
 </head>
 
 <BODY>

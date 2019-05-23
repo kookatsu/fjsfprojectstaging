@@ -35,7 +35,7 @@ function ShowFooter(){
 ?>
 	<table width="100%" border="0">
 		<tr>
-			<td width="100%" align="center" id="copyright" name="copyright">ver.1.0.0&nbsp&nbsp&nbsp&nbsp;
+			<td width="100%" align="center" id="copyright" name="copyright">ver.1.0.2&nbsp&nbsp&nbsp&nbsp;
 					Copyright&nbsp;&copy;&nbsp;<?php print date("Y")?>&nbsp;Fujimoto&nbsp;Corporation&nbsp;All&nbsp;Rights&nbsp;Reserved.
 			</td>
 		</tr>
