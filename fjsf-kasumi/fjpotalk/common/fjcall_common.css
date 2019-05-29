@@ -107,6 +107,9 @@ a:hover { color: #BE5170; }
 }
 
 /* マイボックス*/
+.mybox_sidebar{
+	width:300px; float:left; height:1000px; background:#333; color:#FFF; padding:0 10px; margin:0 10px;
+}
 .mybox_title{
 	margin:10px 0 0 0;
 }
