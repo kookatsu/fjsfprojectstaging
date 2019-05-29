@@ -106,3 +106,13 @@ a:hover { color: #BE5170; }
 	width: 1100px;
 }
 
+/* マイボックス*/
+.mybox_title{
+	margin:10px 0 0 0;
+}
+
+.mybox {
+	background-color:#FFF;
+	height:200;
+}
+

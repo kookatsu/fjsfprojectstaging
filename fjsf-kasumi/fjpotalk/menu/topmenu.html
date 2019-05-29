@@ -23,6 +23,7 @@
 </head>
 
 <BODY>
+<div style="float:left;">
 <center>
 
 
@@ -109,7 +110,7 @@
 
 	<!-- 外側のTable Start -->
 	<table width="1100"  border="0" style="font-size:12pt;"><tr><td valign="top">
-		<tr>
+		<td height="16"><tr>
 			<!-- ■インシデント報告 -->
 			<td width="350" valign="top">
 				<!-- 内側のTable Start -->
@@ -133,7 +134,7 @@
 			
 
 
-			<!-- 2.Filler Start-->
+		<!-- 2.Filler Start-->
 <!--			<td width="10" >&nbsp;</td>-->
 			<!-- 2.Filler End-->
 
@@ -151,7 +152,7 @@
 						<td width="100"><a href="javascript:void(0)" target="" Onclick="MyCodeClickh32();return false">時間帯別</td></td>
 						<td width="100"><a href="javascript:void(0)" target="" Onclick="MyCodeClickh33();return false">月別</td></td>
 						<td width="390">&nbsp;</td>
-					</tr>
+	        </tr>
 
 					<tr>
 						<td colspan="4" align="left" ><iframe id="chart31" src="topmenu_chart31G.php" name="RowMasterList31" width="700" height="250" scrolling="no" frameborder="0" ></iframe></td>
@@ -325,147 +326,16 @@
 
 </form>
 </center>
+</div>
+<div style="width:300px; float:left; height:1000px; background:#333; color:#FFF; padding:10px;">
+<div class="mybox_title">今日の天気</div>
+  <div class="mybox">新規 Div タグの内容がここに入ります</div>
+  
+  <div class="mybox_title">今日の株価</div>
+  <div class="mybox">新規 Div タグの内容がここに入ります</div>
+  
+  <div class="mybox_title">今の様子</div>
+  <div class="mybox">新規 Div タグの内容がここに入ります</div>
+</div>
 </body>
 </html>
-
-
-
-<SCRIPT type="text/javascript" src="../common/jkl-calendar.js" charset="Shift_JIS"></SCRIPT>
-
-<script language="javascript" src="../common/fjcall_ComFunc.js"></script>
-<SCRIPT Language="JavaScript">
-<!--
-var cal1 = new JKL.Calendar("calid","formid","colname1"); //From
-var cal2 = new JKL.Calendar("calid","formid","colname2"); //To
-
-/////////////////////////////////////////
-// OKボタン
-/////////////////////////////////////////
-function MyComOK(){
-
-
-	var labelObj = document.getElementById("wait_label");
-	labelObj.innerHTML = "しばらくお待ち下さい。。。";
-
-	form01.comButton.value="ok";
-	form01.submit();
-
-
-}
-/////////////////////////////////////////
-// 日次報告
-/////////////////////////////////////////
-function MyCodeClickh5()
-{
-
-	//日付範囲
-	selymd1=form01.selymd1.value;
-	selymd2=form01.selymd2.value;
-
-	window.open('topmenu_sfdailyreport.php?selymd1=' + unescape(selymd1) + '&selymd2=' + unescape(selymd2), '_blank', 'width=1100,height=850,titlebar=no,toolbar=no,scrollbars=yes, top=0,left=0');
-
-}
-
-/////////////////////////////////////////
-// 月次定例資料を表示する
-/////////////////////////////////////////
-function ManuOpen(){
-
-reportfilename = '../manu/' + form01.reportfilename.value ;
-
-	window.open(reportfilename ,'_blank', 'width=1000,height=700,titlebar=no,toolbar=no,scrollbars=yes');
-
-}
-/////////////////////////////////////////
-// 操作マニュアルを表示する
-/////////////////////////////////////////
-function ManuOpen2(){
-
-	window.open('../manu/manual_foruser.html', '_blank', 'width=1000,height=770,titlebar=no,toolbar=no,scrollbars=yes');
-
-
-}
-/////////////////////////////////////////
-// インシデント総件数クリック
-/////////////////////////////////////////
-function MyCodeClickh1( wmode )
-{
-	//日付範囲
-	selymd1=form01.selymd1.value;
-	selymd2=form01.selymd2.value;
-
-	window.open('topmenu_sfmeisai.php?selymd1=' + unescape(selymd1) + '&selymd2=' + unescape(selymd2)  + '&selmode=' + unescape(wmode), '_blank', 'width=1100,height=850,titlebar=no,toolbar=no,scrollbars=yes, top=' + (screen.availHeight-500)/2 + ',left=' + (screen.availWidth-500)/2);
-
-}
-/////////////////////////////////////////
-// 総着信数クリック
-/////////////////////////////////////////
-function MyCodeClickh2(  )
-{
-
-	//日付範囲
-	selymd1=form01.selymd1.value;
-	selymd2=form01.selymd2.value;
-
-	window.open('topmenu_callmeisai.php?selymd1=' + unescape(selymd1) + '&selymd2=' + unescape(selymd2) , '_blank', 'width=570,height=850,titlebar=no,toolbar=no,scrollbars=yes, top=' + (screen.availHeight-500)/2 + ',left=' + (screen.availWidth-500)/2);
-
-}
-/////////////////////////////////////////
-// 店舗別平均問合せ件数クリック
-/////////////////////////////////////////
-function MyCodeClickh3( )
-{
-
-	//日付範囲
-	selymd1=form01.selymd1.value;
-	selymd2=form01.selymd2.value;
-
-	window.open('topmenu_sfstore.php?selymd1=' + unescape(selymd1) + '&selymd2=' + unescape(selymd2) , '_blank', 'width=550,height=850,titlebar=no,toolbar=no,scrollbars=yes, top=' + (screen.availHeight-500)/2 + ',left=' + (screen.availWidth-500)/2);
-
-}
-/////////////////////////////////////////
-// 機種名クリック
-/////////////////////////////////////////
-function MyCodeClickh4( wmode )
-{
-	//日付範囲
-	selymd1=form01.selymd1.value;
-	selymd2=form01.selymd2.value;
-
-	window.open('topmenu_sfkisyumeisai.php?selymd1=' + unescape(selymd1) + '&selymd2=' + unescape(selymd2)  + '&selmode=' + unescape(wmode), '_blank', 'width=1100,height=850,titlebar=no,toolbar=no,scrollbars=yes, top=' + (screen.availHeight-500)/2 + ',left=' + (screen.availWidth-500)/2);
-
-}
-
-/////////////////////////////////////////
-// グラフクリック
-/////////////////////////////////////////
-function MyCodeClickh31( )
-{
-	form01.comButton.value="ok";
-    form01.comButtonG.value="g31";
-    form01.submit();
-}
-/////////////////////////////////////////
-// グラフクリック
-/////////////////////////////////////////
-function MyCodeClickh32( )
-{
-
-	form01.comButton.value="ok";
-    form01.comButtonG.value="g32";
-    form01.submit();
-}
-/////////////////////////////////////////
-// グラフクリック
-/////////////////////////////////////////
-function MyCodeClickh33( )
-{
-
-	form01.comButton.value="ok";
-    form01.comButtonG.value="g33";
-    form01.submit();
-}
-
-//-->
-</SCRIPT>
-
