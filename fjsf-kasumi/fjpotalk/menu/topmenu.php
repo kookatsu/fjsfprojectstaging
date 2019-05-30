@@ -359,7 +359,8 @@
 }
   </script>
 </div>
-<!-- TradingView Widget END --></div>  
+<!-- TradingView Widget END --></div>
+
   <div class="mybox_title">▼Bookmark</div>
   <div class="mybox" style=" padding:10px 0 0 0 ;">
   <div class="mybox_link">公式ホームページ</div>
