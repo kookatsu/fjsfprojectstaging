@@ -304,7 +304,7 @@ EOS;
 <br>
 
 
-	<!-- 入力エリア -->
+	<!-- 入力エリア  -->
 	<div id="login_input">
 	<table width="340" border="0">
 		<tr>
