@@ -364,9 +364,9 @@
   <div class="mybox" style=" padding:10px 0 0 0 ;">
   <div class="mybox_link">公式ホームページ</div>
   <div class="mybox_link">日経</div>
-    <div class="mybox_link">財務省</div>
-      <div class="mybox_link">facebook</div>
-        <div class="mybox_link">交通情報</div>
+  <div class="mybox_link">財務省</div>
+  <div class="mybox_link">facebook</div>
+  <div class="mybox_link">交通情報</div>
 </div>
 +Bookmark
 
