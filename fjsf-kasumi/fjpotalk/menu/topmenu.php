@@ -403,7 +403,7 @@
 				<td width="310" height="30" rowspan="2" align="left" style="font-size:14pt;"><?= $companyname ?> 様</td>
 				<td width="230" height="30" align="left" style="font-size:14pt;"><img src=<?php print $GUIDE_MODNAME_TOP ?> border="0"></td>
 
-				<td width="130" align="left" ><a href="javascript:void(0)" target="" Onclick="MyCodeClickh5();return false"><img src=<?= $MOD_LINKPRE_01 ?> border="0" alt="日次報告">&nbsp;日次報告</a></td>
+				<td width="130" align="left" ><a href="javascript:void(0)" target="" Onclick="MyCodeClickh5();return false"><img src=<?= $MOD_LINKPRE_01 ?> border="0" alt="日次報告">&nbsp;日次報告★</a></td>
 
 				<td width="100" align="right" >対応店舗数</td>
 				<td width="40"  align="right"><?=$basestorecnt?></td>
