@@ -214,7 +214,7 @@
 
 <BODY>
 
-<!--左サイドバー-->
+<!--左サイドバー開始-->
 <div class="mybox_sidebar">
 <div class="mybox_title">▼東京の明日明後日の天気</div>
     <div id="mamewaza_weather" class="mamewaza_weather"></div>
