@@ -91,7 +91,7 @@
 			$_SESSION["levelid_call"] = $l_levellid;//権限
 			$_SESSION["fujimotoflg_call"] = $l_fujimotoflg;
 
-			$first="./menu/topmenudemo.php";
+			$first="./menu/topmenu.php";
 //通達経由
 //			$first="./message/message_dsp.php";
 			header("location: {$first}");
