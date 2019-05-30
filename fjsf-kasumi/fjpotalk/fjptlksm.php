@@ -312,7 +312,7 @@ EOS;
 
 				<table width="340" border="0" cellpadding="4" >
 					<tr valign="middle">
-						<td align="left">StarBoard　ログイン<hr></td>
+						<td align="left">StarBoard　ログイン - Demo<hr></td>
 					</tr>
 
 					<tr valign="middle">
