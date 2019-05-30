@@ -213,6 +213,170 @@
 </head>
 
 <BODY>
+
+<!--左サイドバー-->
+<div class="mybox_sidebar">
+<div class="mybox_title">▼東京の明日明後日の天気</div>
+    <div id="mamewaza_weather" class="mamewaza_weather"></div>
+  
+  <div class="mybox_title">▼今日の株価</div>
+  <div class="mybox" style=" height:400px;"><!--<img src="../img/mybox/kabu.jpg" width="300" height="200">-->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright">TradingView提供の<a href="https://jp.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">マーケットデータ</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "showChart": true,
+  "locale": "ja",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "width": "300",
+  "height": "400",
+  "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+  "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+  "gridLineColor": "rgba(233, 233, 234, 1)",
+  "scaleFontColor": "rgba(131, 136, 141, 1)",
+  "belowLineFillColorGrowing": "rgba(5, 122, 205, 0.12)",
+  "belowLineFillColorFalling": "rgba(5, 122, 205, 0.12)",
+  "symbolActiveColor": "rgba(225, 239, 249, 1)",
+  "tabs": [
+    {
+      "title": "指数",
+      "symbols": [
+        {
+          "s": "OANDA:SPX500USD",
+          "d": "S&P 500"
+        },
+        {
+          "s": "INDEX:XLY0",
+          "d": "Shanghai Composite"
+        },
+        {
+          "s": "FOREXCOM:DJI",
+          "d": "Dow 30"
+        },
+        {
+          "s": "INDEX:NKY",
+          "d": "Nikkei 225"
+        },
+        {
+          "s": "INDEX:DAX",
+          "d": "DAX Index"
+        },
+        {
+          "s": "OANDA:UK100GBP",
+          "d": "FTSE 100"
+        }
+      ],
+      "originalTitle": "Indices"
+    },
+    {
+      "title": "商品先物",
+      "symbols": [
+        {
+          "s": "CME_MINI:ES1!",
+          "d": "E-Mini S&P"
+        },
+        {
+          "s": "CME:E61!",
+          "d": "Euro"
+        },
+        {
+          "s": "COMEX:GC1!",
+          "d": "Gold"
+        },
+        {
+          "s": "NYMEX:CL1!",
+          "d": "Crude Oil"
+        },
+        {
+          "s": "NYMEX:NG1!",
+          "d": "Natural Gas"
+        },
+        {
+          "s": "CBOT:ZC1!",
+          "d": "Corn"
+        }
+      ],
+      "originalTitle": "Commodities"
+    },
+    {
+      "title": "国債",
+      "symbols": [
+        {
+          "s": "CME:GE1!",
+          "d": "Eurodollar"
+        },
+        {
+          "s": "CBOT:ZB1!",
+          "d": "T-Bond"
+        },
+        {
+          "s": "CBOT:UD1!",
+          "d": "Ultra T-Bond"
+        },
+        {
+          "s": "EUREX:GG1!",
+          "d": "Euro Bund"
+        },
+        {
+          "s": "EUREX:II1!",
+          "d": "Euro BTP"
+        },
+        {
+          "s": "EUREX:HR1!",
+          "d": "Euro BOBL"
+        }
+      ],
+      "originalTitle": "Bonds"
+    },
+    {
+      "title": "FX",
+      "symbols": [
+        {
+          "s": "FX:EURUSD"
+        },
+        {
+          "s": "FX:GBPUSD"
+        },
+        {
+          "s": "FX:USDJPY"
+        },
+        {
+          "s": "FX:USDCHF"
+        },
+        {
+          "s": "FX:AUDUSD"
+        },
+        {
+          "s": "FX:USDCAD"
+        }
+      ],
+      "originalTitle": "Forex"
+    }
+  ]
+}
+  </script>
+</div>
+<!-- TradingView Widget END --></div>  
+  <div class="mybox_title">▼Bookmark</div>
+  <div class="mybox" style=" padding:10px 0 0 0 ;">
+  <div class="mybox_link">公式ホームページ</div>
+  <div class="mybox_link">日経</div>
+    <div class="mybox_link">財務省</div>
+      <div class="mybox_link">facebook</div>
+        <div class="mybox_link">交通情報</div>
+</div>
++Bookmark
+
+
+設定</div>
+<!--左サイドバー終了-->
+
+
+<!--メイン開始-->
+<div style="float:left;">
 <center>
 
 
@@ -762,6 +926,43 @@
 
 </form>
 </center>
+</div>
+<!--メイン要素終了-->
+
+<!--右サイドバー-->
+<div class="mybox_sidebar">
+<div class="mybox_title">▼twitter</div>
+  <div class="mybox"><img src="..//img/mybox/twitter.jpg" width="300" height="200"></div>
+  
+  <div class="mybox_title">▼今の様子</div>
+  <div class="mybox"><!--<img src="../img/mybox/camera.jpg" width="300" height="200">-->
+  <iframe width="300" height="200" src="https://www.youtube.com/embed/OBsmLKuNELA?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  
+  <div class="mybox_title">
+    ?Mybox設定
+  </div>
+  <div class="mybox_title">
+    ▼背景設定
+  </div>
+  <div class="mybox"></div>
+
+</div>
+<!--右サイドバー終了-->
+
+
+<!--天気用-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="./mamewaza_weather/mamewaza_weather.min.js"></script>
+<script type="text/javascript">
+$.mamewaza_weather( {
+	selector: "#mamewaza_weather",
+	region:"130010",
+	layout:"vertical",
+	when:"2days",
+	explanation:"1"
+} );
+</script>
+
 </body>
 </html>
 
