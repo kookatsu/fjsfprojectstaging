@@ -369,10 +369,7 @@
   <div class="mybox_link">facebook</div>
   <div class="mybox_link">交通情報</div>
 </div>
-+Bookmark
-
-
-設定</div>
++Bookmark設定</div>
 <!--左サイドバー終了-->
 
 
